@@ -1,0 +1,3 @@
+instruction-list
+btn-add
+IF ID EXE MEM WB

@@ -1,0 +1,46 @@
+{
+    "instructions": [
+        {
+            "opcode": 0,
+            "name": "LOAD",
+            "cycles": 2
+        },
+        {
+            "opcode": 1,
+            "name": "STORE",
+            "cycles": 2
+        },
+        {
+            "opcode": 2,
+            "name": "ADD",
+            "cycles": 1
+        },
+        {
+            "opcode": 3,
+            "name": "MUL",
+            "cycles": 10
+        }
+    ],
+    "registers": [
+        {
+            "id": 0,
+            "name": "R0",
+            "value": 0
+        },
+        {
+            "id": 1,
+            "name": "R1",
+            "value": 0
+        },
+        {
+            "id": 2,
+            "name": "R2",
+            "value": 0
+        },
+        {
+            "id": 3,
+            "name": "R3",
+            "value": 0
+        }
+    ]
+}
