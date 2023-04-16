@@ -15,6 +15,7 @@ export function drawInit(host: HTMLElement) {
 
   const cycleCounter = document.createElement("label");
   cycleCounter.classList.add("cycle-count");
+  cycleCounter.innerHTML = "0";
   container.appendChild(cycleCounter);
 
   host.appendChild(container);
@@ -34,6 +35,11 @@ function drawInputs(host: HTMLDivElement) {
   buttonAdd.innerHTML = "Add Instruction";
   buttonAdd.classList.add("btn-add");
   inputsContainer.appendChild(buttonAdd);
+
+  const buttonSimulate = document.createElement("button");
+  buttonSimulate.innerHTML = "Simulate";
+  buttonSimulate.classList.add("btn-simulate");
+  inputsContainer.appendChild(buttonSimulate);
 
   host.appendChild(inputsContainer);
 }

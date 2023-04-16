@@ -50,3 +50,7 @@ input {
   justify-content: center;
   background-color: rgb(159, 255, 180);
 }
+
+.cycle-count {
+  font-size: large;
+}

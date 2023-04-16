@@ -1,3 +1,6 @@
 instruction-list
 btn-add
+btn-simulate
 IF ID EXE MEM WB
+message-label
+cycle-count
