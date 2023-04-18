@@ -11,10 +11,10 @@ export function drawInit(host: HTMLElement) {
   container.appendChild(instructionsContainer);
 
   drawSystemUnits(container);
-  drawMessageBox(container);
 
   const cycleCounter = document.createElement("label");
   cycleCounter.classList.add("cycle-count");
+  cycleCounter.innerHTML = "0";
   container.appendChild(cycleCounter);
 
   host.appendChild(container);
@@ -30,10 +30,10 @@ function drawInputs(host: HTMLDivElement) {
   drawInputFields(inputForm);
   inputsContainer.appendChild(inputForm);
 
-  const buttonAdd = document.createElement("button");
-  buttonAdd.innerHTML = "Add Instruction";
-  buttonAdd.classList.add("btn-add");
-  inputsContainer.appendChild(buttonAdd);
+  const buttonSimulate = document.createElement("button");
+  buttonSimulate.innerHTML = "Simulate";
+  buttonSimulate.classList.add("btn-simulate");
+  inputsContainer.appendChild(buttonSimulate);
 
   host.appendChild(inputsContainer);
 }
@@ -54,6 +54,7 @@ function drawInputFields(host: HTMLFormElement) {
     inputField.value = input.value;
     inputField.id = input.id;
     inputField.name = input.id;
+    inputField.classList.add(input.id);
     container.appendChild(inputField);
 
     host.appendChild(container);
@@ -82,13 +83,4 @@ function drawSystemUnits(host: HTMLDivElement) {
     unitsContainer.appendChild(unitDiv);
   });
   host.appendChild(unitsContainer);
-}
-
-function drawMessageBox(host: HTMLDivElement) {
-  const messageBox = document.createElement("div");
-  messageBox.classList.add("message-box");
-  const messageLabel = document.createElement("label");
-  messageLabel.classList.add("cycle-count");
-  messageBox.appendChild(messageLabel);
-  host.appendChild(messageBox);
 }
