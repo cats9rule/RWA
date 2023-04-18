@@ -1,10 +1,7 @@
-import { Registry } from "./models/registry";
-import { getRegistry } from "./observers/apiService";
+import { SystemLogic } from "./observables/systemLogic";
 import { drawInit } from "./view/initialView";
 
 console.log("Hello RxJS!");
 
 drawInit(document.body);
-getRegistry(0).subscribe({
-  next: (reg: Registry) => console.log(reg),
-});
+const logic = new SystemLogic();

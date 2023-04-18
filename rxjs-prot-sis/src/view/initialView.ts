@@ -60,6 +60,7 @@ function drawInputFields(host: HTMLFormElement) {
     inputField.value = input.value;
     inputField.id = input.id;
     inputField.name = input.id;
+    inputField.classList.add(input.id);
     container.appendChild(inputField);
 
     host.appendChild(container);

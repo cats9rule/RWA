@@ -4,9 +4,9 @@ import { Operation } from "../models/operation";
 
 const BASE_URL = "http://localhost:3000";
 
-export function getRegistry(id: number): Observable<Registry> {
+export function getRegistry(name: string): Observable<Registry[]> {
   return from(
-    fetch(`${BASE_URL}/registries/${id}`)
+    fetch(`${BASE_URL}/registries/?name=${name}`)
       .then((res) => {
         if (res.ok) {
           console.log(res);
@@ -38,9 +38,9 @@ export function putRegistry(registry: Registry): Observable<string> {
   );
 }
 
-export function getOperation(name: string): Observable<Operation> {
+export function getOperation(name: string): Observable<Operation[]> {
   return from(
-    fetch(`${BASE_URL}/operation/?name=${name}`)
+    fetch(`${BASE_URL}/operations/?name=${name}`)
       .then((res) => {
         if (res.ok) return res.json();
         else throw new Error("Operation not found");

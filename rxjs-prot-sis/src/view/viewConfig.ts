@@ -11,20 +11,20 @@ export interface Unit {
 
 export const inputs: Input[] = [
   {
-    name: "Instruction",
-    type: "",
-    id: "instruction",
+    name: "Operation",
+    type: "text",
+    id: "operation",
     value: "",
   },
   {
     name: "Operand-1",
-    type: "",
+    type: "text",
     id: "op1",
     value: "",
   },
   {
     name: "Operand-2",
-    type: "",
+    type: "text",
     id: "op2",
     value: "",
   },

@@ -27,6 +27,9 @@
 input {
   margin: 2px;
 }
+button {
+  margin: 2px;
+}
 .units-container {
   display: flex;
   flex-direction: row;

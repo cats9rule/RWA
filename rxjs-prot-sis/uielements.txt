@@ -1,4 +1,7 @@
 instruction-list
+operation
+op1
+op2
 btn-add
 btn-simulate
 IF ID EXE MEM WB
