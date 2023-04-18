@@ -1,5 +1,6 @@
 import {
   Observable,
+  combineLatest,
   debounceTime,
   filter,
   from,
@@ -30,18 +31,21 @@ export function handleOperandInput(
   opNumber: number
 ): Observable<Operand> {
   const input = parseInt(inputField.value);
+  console.log(input);
   if (isNaN(input)) {
     return fromEvent(inputField, "input").pipe(
-      debounceTime(500),
+      debounceTime(1000),
       map((event: InputEvent) =>
         (<HTMLInputElement>event.target).value.toUpperCase()
       ),
       switchMap((regName) => getRegistry(regName)),
-      map((registries) => ({
-        index: opNumber,
-        isImmediate: false,
-        value: registries[0],
-      }))
+      map((registries) => { 
+        return ({
+          index: opNumber,
+          isImmediate: false,
+          value: registries[0],
+        })
+      })
     );
   } else {
     return fromEvent(inputField, "input").pipe(
@@ -54,10 +58,12 @@ export function handleOperandInput(
   }
 }
 
-export function handleAddInstructionClick(addButton: HTMLButtonElement) {
+export function handleAddInstructionClick(addButton: HTMLButtonElement, operation: Observable<Operation>, op1: Observable<Operand>, op2: Observable<Operand>) {
   return fromEvent(addButton, "click").pipe(
-    map((ev) => "AddInstruction Click")
-  );
+    map((ev) => "Simulate Click"),
+    switchMap(() => combineLatest([operation, op1, op2]))
+    );
+  ;
 }
 
 export function handleSimulateClick(simulateButton: HTMLButtonElement) {

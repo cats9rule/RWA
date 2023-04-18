@@ -1,22 +1,27 @@
+import { Observable, combineLatest } from "rxjs";
 import { Instruction } from "../models/instruction";
 import {
-  handleAddInstructionClick,
+  handleOperandInput,
   handleOperationInput,
   handleSimulateClick,
 } from "./eventHandlers";
+import { Operation } from "../models/operation";
+import { Operand } from "../models/operand";
 
 export class SystemLogic {
   public clkCount = 0;
   public instructions: Instruction[] = [];
 
+  private operation$: Observable<Operation>;
+  private operand1$: Observable<Operand>;
+  private operand2$: Observable<Operand>;
+
   constructor() {
     this.initEventHandlers();
   }
 
-  public makeInstruction() {}
   private initEventHandlers() {
     this.initInputs();
-    this.initAddButton();
     this.initSimulateButton();
   }
 
@@ -26,16 +31,26 @@ export class SystemLogic {
     const op1: HTMLInputElement = document.querySelector(".op1");
     const op2: HTMLInputElement = document.querySelector(".op2");
 
-    handleOperationInput(operationInput).subscribe({
-      next: (operation) => console.log(operation),
+    this.operation$ = handleOperationInput(operationInput);
+    this.operand1$ = handleOperandInput(op1, 0);
+    this.operand2$ = handleOperandInput(op2, 1);
+
+    combineLatest([this.operation$, this.operand1$, this.operand2$]).subscribe({
+      next: ([operation, op1, op2]) => {
+        if (operation && op1.value && op2.value) {
+          this.instructions.push({
+            index: this.instructions.length,
+            op1: op1,
+            op2: op2,
+            operation: operation
+          });
+          console.log(this.instructions);
+        }
+      },
+      error: (err) => console.log(err)
     });
   }
-  private initAddButton() {
-    const addButton: HTMLButtonElement = document.querySelector(".btn-add");
-    handleAddInstructionClick(addButton).subscribe({
-      next: (value) => console.log(value),
-    });
-  }
+
   private initSimulateButton() {
     const simulateButton: HTMLButtonElement =
       document.querySelector(".btn-simulate");
@@ -43,4 +58,6 @@ export class SystemLogic {
       next: (value) => console.log(value),
     });
   }
+
+
 }
