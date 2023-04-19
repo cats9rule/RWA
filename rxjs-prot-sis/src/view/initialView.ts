@@ -35,11 +35,6 @@ function drawInputs(host: HTMLDivElement) {
   buttonSimulate.classList.add("btn-simulate");
   inputsContainer.appendChild(buttonSimulate);
 
-  const buttonSimulate = document.createElement("button");
-  buttonSimulate.innerHTML = "Simulate";
-  buttonSimulate.classList.add("btn-simulate");
-  inputsContainer.appendChild(buttonSimulate);
-
   host.appendChild(inputsContainer);
 }
 
